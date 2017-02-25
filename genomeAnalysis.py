@@ -1,5 +1,6 @@
 import csv
 import operator
+from sklearn.decomposition import PCA
 
 f = open('genome-data.txt', 'rb')
 reader = csv.reader(f, delimiter=' ')
@@ -43,5 +44,9 @@ for i in range(0, len(genomeRows)):
             matrixRow[j] = 0;
     matrix[i] = matrixRow;
 
-for row in matrix:
-    print row;
+#for row in matrix:
+    #print row;
+
+pca = PCA(n_components=2);
+pca.fit(matrix);
+print(pca.explained_variance_ratio_)
